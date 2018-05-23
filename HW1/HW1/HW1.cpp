@@ -2,7 +2,6 @@
 #include <iomanip>
 #include <string>
 #include <cstdlib>
-#include<ctime>
 #include <cmath>
 using namespace std;
 //EX01_01
@@ -48,9 +47,9 @@ void ex05ArrayPass(int array[], int size);
 void ex05ArrayCheck(int array[], int size);
 int main() {
   srand(static_cast<unsigned int>(time(0)));
-  //ex02();
-  //ex03();
-  //ex04();
+  ex02();
+  ex03();
+  ex04();
   ex05();
   return(0);
 }
@@ -151,9 +150,7 @@ void ex04() {
 
   int randnumber1 = rand();
   int randnumber2 = rand();
-  cout << add(randnumber1, randnumber2);
-
-  
+  cout << add(randnumber1, randnumber2) << endl;
 }
 
 int ex04Double(int dbl) {
