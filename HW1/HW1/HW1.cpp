@@ -45,6 +45,8 @@ int addone(int &input);
 void ex05();
 void ex05ArrayPass(int array[], int size);
 void ex05ArrayCheck(int array[], int size);
+
+
 int main() {
   srand(static_cast<unsigned int>(time(0)));
   ex02();
@@ -54,13 +56,20 @@ int main() {
   return(0);
 }
 
+
 void ex02() {
   bool hasPassedTest = true;
+  //I was getting x around 5000 and y around 40 to 50,000
+  //so I mod to 100 to get random number between 1 and 100
+  //so x isn't always smaller than y.
   int x = (rand() % 100) + 1;
   int y = (rand() % 100) + 1;
 
-  if (x >= y) {
-    cout << "x is greater than or equal to y." << endl;
+  if (x > y) {
+    cout << "x is greater than y." << endl;
+  }
+  if (x == y) {
+    cout << "x is equal to y." << endl;
   }
 
   int numberOfShares;
@@ -91,15 +100,17 @@ void ex02() {
   if (temperature > 90) {
     shelfLife -= 4;
   }
+  //Question never specifies of it's units so I left it off.
+  cout << "Shelf life is " << shelfLife << endl;
 }
+
 
 void ex03() {
   int area;
   char response;
   cout << "Input area: ";
   cin >> area;
-  cout << "Length is " << sqrt(area) << endl;
-  cout << "Diagonal is " << fixed
+  cout << "Diagonal length is " << fixed
        << setprecision(2) << sqrt(area + area) << endl;
 
   cout << "Enter Yes(y) or no(n): ";
@@ -112,12 +123,14 @@ void ex03() {
   }
 
   char tab = '\t';
+
   string mailingAddress;
   string emptyString = mailingAddress;
   cout << "Enter mailing Address: ";
   cin.ignore();
   getline(cin, mailingAddress);
 }
+
 
 void ex04() {
   int usernumber;
@@ -134,9 +147,9 @@ void ex04() {
 
   int count = 0;
   do {
-    cout << "*";
+    cout << "* ";
     count++;
-  } while (usernumber > count + 1);
+  } while (usernumber > count);
   cout << endl;
 
   for (int even = 0; even <= 40; even++) {
@@ -151,6 +164,10 @@ void ex04() {
   int randnumber1 = rand();
   int randnumber2 = rand();
   cout << add(randnumber1, randnumber2) << endl;
+
+  //Question doesn't say to put this but
+  //it makes sense to put it in function of question
+  cout << addone(usernumber);
 }
 
 int ex04Double(int dbl) {
@@ -164,6 +181,7 @@ int add(int input1, int input2) {
 int addone(int &input) {
   return ++input;
 }
+
 
 void ex05() {
   int inputs[5];
@@ -182,18 +200,20 @@ void ex05() {
   for (int count = 0; count < 5; count++) {
     product *= inputs[count];
   }
-  cout << "Sum of numbers: " << sum << endl;
-  cout << "Product of numbers: " << product << endl;
+  cout << "Sum of entered numbers: " << sum << endl;
+  cout << "Product of entered numbers: " << product << endl;
 
   ex05ArrayPass(inputs, 5);
   ex05ArrayCheck(inputs, 5);
 }
+
 
 void ex05ArrayPass(int array[], int size) {
   for (int count = 0; count < size; count++) {
     cout << array[count] << endl;
   }
 }
+
 
 void ex05ArrayCheck(int array[], int size) {
   int check;
