@@ -167,7 +167,7 @@ void ex04() {
 
   //Question doesn't say to put this but
   //it makes sense to put it in function of question
-  cout << addone(usernumber);
+  cout << addone(usernumber) << endl;
 }
 
 int ex04Double(int dbl) {
