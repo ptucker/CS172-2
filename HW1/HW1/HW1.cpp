@@ -4,6 +4,15 @@
 #include <cstdlib>
 #include <cmath>
 using namespace std;
+
+//Search for comments prefixed with PT
+// 01: 20/20
+// 02: 19/20
+// 03: 19/20
+// 04: 20/20
+// 05: 20/20
+//TOTAL: 98/100
+
 //EX01_01
 /*
 a) When a program runs on a computer, the part of the computer that carries out the instructions is called the ___CPU______ .
@@ -65,6 +74,10 @@ void ex02() {
   int x = (rand() % 100) + 1;
   int y = (rand() % 100) + 1;
 
+    //PT -- should be
+    // if (x >= y) ...
+    // -1
+    
   if (x > y) {
     cout << "x is greater than y." << endl;
   }
@@ -79,6 +92,7 @@ void ex02() {
     cout << "numberOfShares is less than 100." << endl;
   }
   else {
+      //numberOfShares is greater than or equal to 100
     cout << "numberOfShares is greater than 100." << endl;
   }
 
@@ -129,6 +143,10 @@ void ex03() {
   cout << "Enter mailing Address: ";
   cin.ignore();
   getline(cin, mailingAddress);
+    
+    //PT - (e) initialize string to the empty string
+    //string empty = "";
+    // -1
 }
 
 
@@ -152,6 +170,8 @@ void ex04() {
   } while (usernumber > count);
   cout << endl;
 
+    //PT or even += 2
+    //for (int even=0; even <= 40; even += 2)
   for (int even = 0; even <= 40; even++) {
     if (even % 2 == 0) {
       cout << even << endl;
