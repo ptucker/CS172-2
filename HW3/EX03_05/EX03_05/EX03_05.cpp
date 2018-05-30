@@ -106,6 +106,9 @@ int main() {
   cout << "Even: " << isEven(obj1) << endl;
   cout << "Odd: " << isOdd(obj1) << endl;
   cout << "Prime: " << isPrime(obj1) << endl;
+
+  cout << "Equal: " << equals(obj1) << endl;
+
   int temp2;
   cout << "Enter another one: ";
   cin >> temp2;
@@ -113,7 +116,7 @@ int main() {
   cout << "Even: " << obj2.isEven() << endl;
   cout << "Odd: " << obj2.isOdd() << endl;
   cout << "Prime: " << obj2.isPrime() << endl;
-  cout << "Equal: " << obj1.equals(obj2.getValue()) << endl;
+  cout << "Equal to first input: " << obj1.equals(obj2.getValue()) << endl;
 
   string toNumber;
   cout << "Enter a number: ";
@@ -147,9 +150,13 @@ static bool isPrime(const MyInteger& name) {
     return false;
   }
 }
-//Says set equal to value but value isn't a static type.
+//Says set equal to value but value is stored in object
+//So I made fuction ask for number to check equal.
 static bool equals(const MyInteger& name) {
-  if (name.getValue() == 5) {
+  int newvalue;
+  cout << "Enter new number: ";
+  cin >> newvalue;
+  if (name.getValue() == newvalue) {
     return true;
   }
   else {
