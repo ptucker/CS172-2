@@ -1,32 +1,24 @@
+//I affirm that all code given below was written solely by me, Levi, and 
+//that any help I received adhered to the rules stated for this exam.
 #include "Theater.h"
 #include <string>
-#include <iostream>
 using namespace std;
 Theater::Theater(string Name, string Phone) {
   TheaterName = Name;
   PhoneNumber = Phone;
 }
+
 void Theater::AddMovie(Movie& Movie) {
-  /*
-  cout << Movie.GetTitle() << endl;
-  cout << Movie.GetGenre() << endl;
-  cout << Movie.GetShowTime() << endl;
-  */
   MovieHour[Movie.GetShowTime()] = Movie.GetTitle();
   GenreHour[Movie.GetShowTime()] = Movie.GetGenre();
-
-
 }
+
 string Theater::GetMovieForHour(int hour) {
-  /*
-  for (int time = 0; time < 24; time++) {
-      cout << MovieHour[time] << time << endl;
-  }
-  */
-  if (hour < 24 && hour > 0) {
-    for (int hours = hour; hours < 24; hours++) {
-      if (MovieHour[hours] != "") {
-        return MovieHour[hours];
+  if (hour > 0 && hour < 24) {
+    //Returns movies started after input time up to hour 24.
+    for (int time = hour; time < 24; time++) {
+      if (MovieHour[time] != "") {
+        return MovieHour[time];
       }
     }
   }
@@ -45,9 +37,5 @@ int Theater::GetShowTimeForGenre(string Genre) {
   return -1;
 }
 
-int Theater::GetPopcornPrice() {
-  return PopcornPrice;
-}
-int Theater::GetCokePrice() {
-  return CokePrice;
-}
+int Theater::GetPopcornPrice() {return PopcornPrice;}
+int Theater::GetCokePrice() {return CokePrice;}
