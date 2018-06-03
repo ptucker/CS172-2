@@ -9,11 +9,6 @@ using namespace std;
 class Movie {
 private:
   string genre;
-  const string Action = "Action";
-  const string Comedy = "Comedy";
-  const string Horror = "Horror";
-  const string Documentary = "Documentary";
-
   string title;
   int showTime;
 public:

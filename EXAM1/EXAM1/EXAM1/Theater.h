@@ -12,7 +12,8 @@ private:
   int PopcornPrice = 2;
   string TheaterName;
   string PhoneNumber;
-  //Action 1, Comedy 2, Horror 3, Documentary 4
+  //Array of 24 to represent each hour
+  //to keep track of genre and movie times.
   string GenreHour[24];
   string MovieHour[24];
 public:

@@ -5,7 +5,7 @@
 
 using namespace std;
 Movie::Movie() {
-  genre = Comedy;
+  genre = "Comedy";
 }
 Movie::Movie(string Title, string Genre, int ShowTime) {
   title = Title;
