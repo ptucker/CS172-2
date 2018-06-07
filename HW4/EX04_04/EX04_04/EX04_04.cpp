@@ -1,7 +1,8 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
-
+//Link to UML diagram https://imgur.com/a/qbwoO6X
+//Let me know if there is a better way to submit UML diamgrams.
 class Rectangle2D {
 private:
   double x, y, width, height;
@@ -33,6 +34,7 @@ public:
   const double getArea() { return width * height; }
   const double getPerimeter() { return (2 * width) + (2 * height); }
 
+  //I used x2 and y2 so I could use x and y in private.
   const bool contains(double x2, double y2) {
     //Probably a more elegant way to do this but I need to finish other problems.
     if (x2 < x + (width * 0.5)) {
@@ -74,7 +76,6 @@ public:
     //make it very hard to read.
 
     //These if statements test if a side of a rectangle is between the two sides on another rectangle.
-    //If they are overlapping 2 lines have to cross which is why I set overlapTest == 2 in end to output true.
     if ((ptr->getx() - (0.5 * ptr->getwidth())) < (x + (0.5 * width)) &&
                                                   (x + (0.5 * width)) < (ptr->getx() + (0.5 * ptr->getwidth()))) {
       overlapTest++;
@@ -93,9 +94,9 @@ public:
       overlapTest++;
     }
 
-    //For overlap to happen 2 of these have to be true if 1, 3, or 4 are
-    //output it either isn't a rectangle anymore or a weird bug.
-    if (overlapTest == 2) {
+
+
+    if (overlapTest == 2){
       return true;
     }
     else {
@@ -106,8 +107,15 @@ public:
 
 
 int main() {
-  Rectangle2D Rich(0, 0, 2, 4);
-  Rectangle2D Rich2(1, 1, 4, 4);
-  cout << Rich.getArea() << endl;
+  Rectangle2D r1(2, 2, 5.5, 4.9);
+  Rectangle2D r2(4, 5, 10.5, 3.2);
+  Rectangle2D r3(3, 5, 2.3, 5.4);
+
+
+  cout << "r1 area: " << r1.getArea() << endl;
+  cout << "r1 perimeter: " << r1.getPerimeter() << endl;
+  cout << "Result of r1.contains(3,3): " << r1.contains(3, 3) << endl;
+  cout << "Result of r1.contains(r2): " << r1.contains(r2) << endl;
+  cout << "Result of r1.overlaps(r3): " << r1.overlaps(r3) << endl;
   return 0;
 }
