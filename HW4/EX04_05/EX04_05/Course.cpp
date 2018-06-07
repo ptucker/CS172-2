@@ -18,8 +18,24 @@ string Course::getCourseName() const {
 }
 
 void Course::addStudent(const string& name) {
-  students[numberOfStudents] = name;
-  numberOfStudents++;
+  string* increaseSize = NULL;
+  if (numberOfStudents == capacity) {
+    increaseSize = new string[++capacity];
+    for (int copy = 0; copy < numberOfStudents; copy++) {
+      increaseSize[copy] = students[copy];
+    }
+    students = increaseSize;
+    students[numberOfStudents] = name;
+    numberOfStudents++;
+  }
+  else {
+    students[numberOfStudents] = name;
+    numberOfStudents++;
+  }
+  //Hangs when I use delete I think its because students points at
+  //increaseSize and when deleted doesn't have anything to look to.
+  //Sorry RAM
+  //delete[] increaseSize;
 }
 
 void Course::dropStudent(const string& name) {

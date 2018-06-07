@@ -8,6 +8,7 @@ int main() {
   course1.addStudent("Rich");
   course1.addStudent("Michael");
   course1.addStudent("Keaton");
+
   
   cout << "Students in " << course1.getCourseName() << ":" << endl;
   string* getNames = course1.getStudents();
