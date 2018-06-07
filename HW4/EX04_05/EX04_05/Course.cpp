@@ -8,9 +8,19 @@ Course::Course(const string& courseName, int capacity) {
   this->capacity = capacity;
   students = new string[capacity];
 }
-
+//Destructor
 Course::~Course() {
   delete [] students;
+}
+//Constructor / Deep Copy
+Course::Course(const Course& course) {
+  courseName = course.courseName;
+  numberOfStudents = course.numberOfStudents;
+  capacity = course.capacity;
+  students = new string[capacity];
+  for (int copy = 0; copy < numberOfStudents; copy++) {
+    students[copy] = course.students[copy];
+  }
 }
 
 string Course::getCourseName() const {
@@ -54,6 +64,13 @@ void Course::dropStudent(const string& name) {
       students[change] = students[change + 1];
     }
   }
+}
+
+void Course::clear() {
+  for (int erase = 0; erase < capacity; erase++) {
+    students[erase] = "";
+  }
+  capacity = 0;
 }
 
 string* Course::getStudents() const {
