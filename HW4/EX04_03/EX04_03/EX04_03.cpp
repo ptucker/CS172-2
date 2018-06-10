@@ -1,5 +1,7 @@
 #include <iostream>
 
+20/20
+
 using namespace std;
 
 int main() {
@@ -14,6 +16,9 @@ int main() {
   x[5] = 100;
   x[6] = 2;
   x[7] = -22;
+  //PT -- this is fine. if you want the other method, it needs to be an array, not a pointer
+  // int x[] = { 1, 2, 4, 5, 10, 100, 2, -22 };
+
   //This didn't work, I have no time to investigate.
   //x[] = { 1, 2, 4, 5, 10, 100, 2, -22 };
 
