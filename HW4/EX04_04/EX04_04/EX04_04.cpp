@@ -1,8 +1,14 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
+
+// 20/20
+
 //Link to UML diagram https://imgur.com/a/qbwoO6X
 //Let me know if there is a better way to submit UML diamgrams.
+//PT -- this is fine
+
+//PT -- better to have these in a separate header, so that other projects can use it.
 class Rectangle2D {
 private:
   double x, y, width, height;
