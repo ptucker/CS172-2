@@ -1,5 +1,7 @@
 #include <iostream>
 
+// 18/20
+
 using namespace std;
 
 int main() {
@@ -15,10 +17,16 @@ int main() {
     cin >> x[count];
   }
 
+  //PT -- avg should be a double
+  // -2
   int avg = 0;
   for (int add = 0; add < arraysize; add++) {
     avg += x[add];
   }
+  //PT -- need to perform double-division
+  /*
+  avg = static_cast<double>(avg) / arraysize;
+  */
   avg = avg / arraysize;
   cout << "Average: " << avg << endl;
 
