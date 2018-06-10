@@ -1,5 +1,7 @@
 #include <iostream>
 
+// good. 20/20
+
 using namespace std;
 
 int* doubleCapacity(const int* list, int size);
