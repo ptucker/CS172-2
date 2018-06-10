@@ -2,6 +2,8 @@
 #include "Course.h"
 using namespace std;
 
+// 19/20
+
 Course::Course(const string& courseName, int capacity) {
   numberOfStudents = 0;
   this->courseName = courseName;
@@ -30,6 +32,7 @@ string Course::getCourseName() const {
 void Course::addStudent(const string& name) {
   string* increaseSize = NULL;
   if (numberOfStudents == capacity) {
+    //PT -- probably better to double the capacity, rather than incrementing it
     increaseSize = new string[++capacity];
     for (int copy = 0; copy < numberOfStudents; copy++) {
       increaseSize[copy] = students[copy];
@@ -46,6 +49,8 @@ void Course::addStudent(const string& name) {
   //increaseSize and when deleted doesn't have anything to look to.
   //Sorry RAM
   //delete[] increaseSize;
+  
+  //PT -- put the delete into the if (numberOfStudents == capacity) case
 }
 
 void Course::dropStudent(const string& name) {
@@ -71,6 +76,8 @@ void Course::clear() {
     students[erase] = "";
   }
   capacity = 0;
+  //PT -- numberOfStudents = 0;
+  // -1
 }
 
 string* Course::getStudents() const {
