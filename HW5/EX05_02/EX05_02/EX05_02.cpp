@@ -21,7 +21,7 @@ bool isSorted(const T list[], int size) {
   for (int sorted = 0; sorted < size - 1; sorted++) {
     T highest;
     highest = list[sorted];
-    //Dont need this first letter is ok, but might want to add second letter and so on order.
+    //Could use this and for loop to sort after first letter, but don't have time to implement.
     if (typeid(T) == typeid(string)) {
       cout << "Sort string (Idk what to sort by)" << endl;
     }
