@@ -81,6 +81,7 @@ private:
   string customer;
   
   vector<Transaction> transactions;
+  int numberOfTransactions = 0;
 public:
   Account() {
     id = 0;
@@ -111,11 +112,23 @@ public:
     balance -= amount;
     Transaction *temp = new Transaction('W', amount, balance, "Standard withdraw");
     transactions.push_back(*temp);
+    numberOfTransactions++;
   }
   void deposit(double amount) {
     balance += amount;
     Transaction *temp = new Transaction('D', amount, balance, "Standard deposit");
     transactions.push_back(*temp);
+    numberOfTransactions++;
+  }
+
+  void getTrasactionData() {
+    for (int output = 0; output < numberOfTransactions; output++) {
+     cout << "Type of transaction: " << transactions[output].getType() << endl;
+     cout << "Transaction amount: " << transactions[output].getAmount() << endl;
+     cout << "Balance after transaction: " << transactions[output].getBalance() << endl;
+     cout << "Transaction description: " << transactions[output].getDescription() << endl;
+     cout << endl;
+    }
   }
 };
 
@@ -135,7 +148,6 @@ int main() {
   cout << "Interest Rate: " << customer1.getAnnualInterestRate() << endl;
   cout << "Balance: " << customer1.getBalance() << endl;
   cout << "Transactions:" << endl;
-  //I got transactions to class but I don't know how to access them...
-
+  customer1.getTrasactionData();
 
 }
