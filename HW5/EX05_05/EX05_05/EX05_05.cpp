@@ -4,6 +4,9 @@
 #include <ctime>
 using namespace std;
 
+// 20/20
+
+//PT -- put these in separate files
 class Date {
 private:
   int year, month, day;
