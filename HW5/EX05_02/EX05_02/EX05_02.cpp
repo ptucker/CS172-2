@@ -2,6 +2,8 @@
 #include <string>
 using namespace std;
 
+// 17/20
+
 template <typename T>
 bool isSorted(const T list[], int size);
 
@@ -21,6 +23,8 @@ bool isSorted(const T list[], int size) {
   for (int sorted = 0; sorted < size - 1; sorted++) {
     T highest;
     highest = list[sorted];
+    //PT -- this should work for strings, too, since string supports >
+    // -3
     //Could use this and for loop to sort after first letter, but don't have time to implement.
     if (typeid(T) == typeid(string)) {
       cout << "Sort string (Idk what to sort by)" << endl;
