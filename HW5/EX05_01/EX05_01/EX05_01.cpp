@@ -3,6 +3,8 @@
 #include <vector>
 using namespace std;
 
+// 20/20
+
 template <typename T>
 int linearSearch(T[], T, int);
 
