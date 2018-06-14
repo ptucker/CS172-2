@@ -5,6 +5,8 @@
 #include <ctime>
 using namespace std;
 
+// 20/20
+
 template <typename T>
 void shuffle(vector<T>& v);
 
