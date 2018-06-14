@@ -2,11 +2,14 @@
 #include <string>
 using namespace std;
 
+// 16/20
+
 template<typename T>
 class vector {
 private:
   T * data;
   int amount;
+  //PT -- need to also track the size of the memory allocated. amount keeps track of the number of items, which is different.
 public:
   vector() {
     data = new T[0];
@@ -22,6 +25,7 @@ public:
 
   //After research they call this a subscript operator function.
   //I'm not sure if I should already know this by now but I do now...
+  //PT -- good.
   T &operator[](int index) {
     return data[index];
   }
@@ -29,6 +33,8 @@ public:
 
   void push_back(T input) {
     T* temp = data;
+    //PT -- you shouldn't always need to re-allocate the buffer. That's inefficient.
+    // -2
     data = new T[++amount];
     //To save steps I inremented amount so I have to -1 for amount.
     for (int inputData = 0; inputData < amount - 1; inputData++) {
@@ -41,6 +47,8 @@ public:
 
   void pop_back() {
     T* temp = data;
+    //PT -- you shouldn't always need to re-allocate the buffer. That's inefficient.
+    // -2
     data = new T[--amount];
     for (int inputData = 0; inputData < amount; inputData++) {
       data[inputData] = temp[inputData];
