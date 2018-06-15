@@ -11,8 +11,7 @@ int main() {
   characters.open(filename);
 
   if (!characters.is_open()) {
-    //characters.open("BackupFile.txt");
-    cout << "File not found. One was created." << endl;
+    cout << "File not found." << endl;
   }
   char temp;
   int total = 0;

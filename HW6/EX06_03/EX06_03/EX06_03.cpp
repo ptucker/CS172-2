@@ -37,7 +37,7 @@ public:
 int FindBaby::amountOfPeople = 0;
 
 
-
+//Gets rank according to name entered.
 void nameToRank(vector<FindBaby>& baby2, string isThisTheName, string year) {
   int runtime = baby2[0].getAmountOfPeople();
   bool foundperson = false;
@@ -55,6 +55,7 @@ void nameToRank(vector<FindBaby>& baby2, string isThisTheName, string year) {
 
 }
 
+//Gets all the names of people and their information and makes a vector array of objects to the FindBaby class.
 void inputNamesIntoVectorClass(ifstream &baby, string year, vector<FindBaby>& finder) {
 
   while (baby.good()) {
