@@ -6,12 +6,13 @@ using namespace std;
 class Date {
 private:
   int year, month, day;
-  int hour, minute, second;
+  int hour, minute;
+  string PMorAM;
 public:
 
   Date();
   Date(int monthInput, int dayInput, int yearInput);
-  Date(int monthInput, int dayInput, int yearInput, int hourInput, int minuteInput);
+  Date(int monthInput, int dayInput, int yearInput, int hourInput, int minuteInput, string when);
 
   int getYear();
   int getDay();
@@ -19,7 +20,7 @@ public:
 
   int getHour();
   int getMinute();
-  int getSecond();
+  string getPMorAM();
 };
 
 #endif // !DATE_H

@@ -1,4 +1,5 @@
 #include <ctime>
+#include <string>
 #include "Date.h"
 using namespace std;
 
@@ -14,12 +15,13 @@ using namespace std;
     //Outputs time without military format.
     if (TM.tm_hour > 12) {
       hour = TM.tm_hour - 12;
+      PMorAM = "PM";
     }
     else {
       hour = TM.tm_hour;
+      PMorAM = "AM";
     }
     minute = TM.tm_min;
-    second = TM.tm_sec;
   }
 
   Date::Date(int monthInput, int dayInput, int yearInput) {
@@ -27,12 +29,11 @@ using namespace std;
     month = monthInput;
     day = dayInput;
 
-
   }
 
 
   //When setting appointments you usually don't include seconds which is why I left it out of constructor
-  Date::Date(int monthInput, int dayInput, int yearInput, int hourInput, int minuteInput) {
+  Date::Date(int monthInput, int dayInput, int yearInput, int hourInput, int minuteInput, string when) {
     time_t tt;
     time(&tt);
     tm TM = *localtime(&tt);
@@ -42,8 +43,8 @@ using namespace std;
 
     hour = hourInput;
     minute = minuteInput;
-    second = TM.tm_sec + 1;
 
+    PMorAM = when;
   }
 
   int Date::getYear() { return year; }
@@ -52,4 +53,5 @@ using namespace std;
 
   int Date::getHour() { return hour; }
   int Date::getMinute() { return minute; }
-  int Date::getSecond() { return second; }
+
+  string Date::getPMorAM() { return PMorAM; }

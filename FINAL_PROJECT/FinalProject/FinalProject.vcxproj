@@ -119,13 +119,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Appointment.cpp" />
     <ClCompile Include="Date.cpp" />
+    <ClCompile Include="Doctor.cpp" />
     <ClCompile Include="Main.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="Patient.cpp" />
+    <ClCompile Include="People.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Appointment.h" />
     <ClInclude Include="Date.h" />
+    <ClInclude Include="Doctor.h" />
+    <ClInclude Include="Patient.h" />
     <ClInclude Include="People.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
