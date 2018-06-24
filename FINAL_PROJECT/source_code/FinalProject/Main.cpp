@@ -49,28 +49,6 @@ void fileIn(Appointment &appointments) {
 
 }
 
-//Allows user to search for a patients appointment.
-void patientFind(Appointment &appointments) {
-  string name;
-  bool search = false;
-  char userinput;
-  cout << "Would you like to search for a patient's appointment? Enter Yes(y) or No(n): ";
-  cin >> userinput;
-  if (userinput == 'y') {
-    search = true;
-  }
-  while (search) {
-    cout << "Enter patients name:";
-    cin >> name;
-    appointments.get_Appointment(name);
-    cout << "Would you like to search for another patient's appointment? Enter Yes(y) or No(n): ";
-    cin >> userinput;
-    if (userinput == 'n') {
-      search = false;
-    }
-  }
-}
-
 //Allows user to create an appointment.
 void userIn(Appointment &appointments) {
 
@@ -117,7 +95,7 @@ void userIn(Appointment &appointments) {
 }
 
 //Outputs appointments in order that are within 2 weeks of realtime.
-void appointmentOrderOutput(Appointment &appointments) {
+void orderOutputSoon(Appointment &appointments) {
   Appointment * temp = new Appointment(appointments);
   Date now;
   vector<int> order(appointments.get_amount());
@@ -221,6 +199,87 @@ void appointmentOrderOutput(Appointment &appointments) {
   delete temp;
 }
 
+//Outputs all appointments in order.
+void orderOutputAll(Appointment &appointments) {
+  Appointment * temp = new Appointment(appointments);
+  Date now;
+  vector<int> order(appointments.get_amount());
+  //Tests if there are any appointments scheduled for years ahead because
+  //it takes a lot of time to go through for loops ahead if you go through it multiple times
+  //so if appointments are only scheduled for a certain year then it cuts down calculation time.
+  int max = now.getYear();
+  for (int yearStart = now.getYear(); yearStart <= now.getYear() + 10; yearStart++) {
+    for (int index = 0; index < appointments.get_amount(); index++) {
+      Date * temp = new Date(appointments.get_time(index));
+      if (temp->getYear() == yearStart) {
+        max = yearStart;
+      }
+    }
+  }
+
+
+  int difference = max - now.getYear();
+  int orderNum = 0;
+  //Very unefficient way at finding order of appointments.
+  for (int year = now.getYear(); year <= now.getYear() + difference; year++) {
+    for (int month = 1; month <= 12; month++) {
+      for (int day = 1; day <= 30; day++) {
+        for (int hour = 1; hour <= 12; hour++) {
+          for (int minute = 1; minute < 60; minute++) {
+            for (int check = 0; check < appointments.get_amount(); check++) {
+              Date * temp = new Date(appointments.get_time(check));
+              if (temp->getMonth() == month && temp->getDay() == day && temp->getHour() == hour && temp->getMinute() == minute) {
+                order[check] = orderNum;
+                orderNum++;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  //Outputs appointments in order, but only if they are less than 2 weeks away.
+  for (int replace = 0; replace < orderNum; replace++) {
+    for (int index = 0; index < appointments.get_amount(); index++) {
+      if (order[index] == replace) {
+        Patient * outputNames = new Patient(temp->get_Patient(index));
+        temp->get_Appointment(outputNames->get_name());
+        delete outputNames;
+      }
+    }
+  }
+
+
+  delete temp;
+}
+
+//Allows user to search for a patients appointment.
+void patientFind(Appointment &appointments) {
+  string name;
+  bool search = false;
+  char userinput;
+  cout << "Would you like to search for a patient's appointment? Enter Yes(y) or No(n): ";
+  cin >> userinput;
+  if (userinput == 'y') {
+    search = true;
+  }
+  while (search) {
+    cout << "Enter patients name (Enter 'all' to list all scheduled appointments):";
+    cin >> name;
+    if (name == "all") {
+      orderOutputAll(appointments);
+    }
+    else {
+      appointments.get_Appointment(name);
+    }
+    cout << "Would you like to search for another patient's appointment? Enter Yes(y) or No(n): ";
+    cin >> userinput;
+    if (userinput == 'n') {
+      search = false;
+    }
+  }
+}
 
 int main() {
   //Creates an object for the appointment class.
@@ -230,6 +289,6 @@ int main() {
   fileIn(schedule);
   userIn(schedule);
   patientFind(schedule);
-  appointmentOrderOutput(schedule);
+  orderOutputSoon(schedule);
   fileOut(schedule);
 }

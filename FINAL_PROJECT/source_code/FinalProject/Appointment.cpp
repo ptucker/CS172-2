@@ -15,16 +15,18 @@ void Appointment::set_Appointment(Patient pat, Doctor doc, Date Setdate) {
   int tempHour = -1;
   int minuteCheck = -1;
 
+  //Checks if there are any appointments with the same doctor within + or - 30 minutes.
+  //So appointments can be scheduled 30 mintues apart but not less than that to allow time
+  //for doctor to work with patients.
   for (int x = 0; x < amount; x++) {
-    if (doc.get_name() == docs[x].get_name() && 
-        Setdate.getYear() == time[x].getYear() && 
-        Setdate.getMonth() == time[x].getMonth() && 
+    //For AM or PM appointments.
+    if (doc.get_name() == docs[x].get_name() &&
+      Setdate.getYear() == time[x].getYear() &&
+      Setdate.getMonth() == time[x].getMonth() &&
+      Setdate.getPMorAM() == time[x].getPMorAM() &&
         Setdate.getDay() == time[x].getDay()) {
-      cout << "1 Got here what else could do wrong..." << endl;
       if (Setdate.getMinute() < 30) {
-        cout << "1  2 Got here what else could do wrong..." << endl;
         if (Setdate.getHour() == time[x].getHour() || Setdate.getHour() - 1 == time[x].getHour()) {
-          cout << "1  3 Got here what else could do wrong..." << endl;
           minuteCheck = 30 + Setdate.getMinute();
           if (Setdate.getHour() == time[x].getHour() && time[x].getMinute() < minuteCheck) {
             input = false;
@@ -39,18 +41,14 @@ void Appointment::set_Appointment(Patient pat, Doctor doc, Date Setdate) {
         }
       }
       if (Setdate.getMinute() > 30) {
-        cout << "2 Got here what else could do wrong..." << endl;
         if (Setdate.getHour() == time[x].getHour() || Setdate.getHour() + 1 == time[x].getHour()) {
-          cout << "3 Got here what else could do wrong..." << endl;
           minuteCheck = Setdate.getMinute() - 30;
           if (Setdate.getHour() == time[x].getHour() && time[x].getMinute() > minuteCheck) {
-            cout << "4 Got here what else could do wrong..." << endl;
             input = false;
             errorNumber = x;
             break;
           }
           if (Setdate.getHour() + 1 == time[x].getHour() && time[x].getMinute() < minuteCheck) {
-            cout << "5 Got here what else could do wrong..." << endl;
             input = false;
             errorNumber = x;
             break;
@@ -65,8 +63,39 @@ void Appointment::set_Appointment(Patient pat, Doctor doc, Date Setdate) {
         }
       }
     }
+
+
+    //For around 12 appointments where AM and PM change and 12 to 1 which is harder to code because not + 1.
+    if (doc.get_name() == docs[x].get_name() &&
+      Setdate.getYear() == time[x].getYear() &&
+      Setdate.getMonth() == time[x].getMonth() &&
+      Setdate.getPMorAM() != time[x].getPMorAM() && // If one is at 12:00 PM and other is at 11:50 AM
+      Setdate.getDay() == time[x].getDay()) {
+      if (Setdate.getMinute() < 30 && Setdate.getHour() == 12) {
+        if (time[x].getHour() == 11) {
+          minuteCheck = 30 + Setdate.getMinute();
+          if (time[x].getMinute() > minuteCheck) {
+            input = false;
+            errorNumber = x;
+            break;
+          }
+        }
+      }
+      if (Setdate.getMinute() > 30 && Setdate.getHour() == 11) {
+        if (time[x].getHour() == 12) {
+          minuteCheck = Setdate.getMinute() - 30;
+          if (time[x].getMinute() < minuteCheck) {
+            input = false;
+            errorNumber = x;
+            break;
+          }
+        }
+      }
+    }
   }
 
+
+  //Only allows an appointment to be scheduled if there are no time conflicts.
   if (input) {
     Patient * tempPerson = new Patient(pat);
     peeps.push_back(*tempPerson);
@@ -90,7 +119,7 @@ void Appointment::set_Appointment(Patient pat, Doctor doc, Date Setdate) {
 void Appointment::get_Appointment(string nameInput) {
   for (int find = 0; find < amount; find++) {
     if (peeps[find].get_name() == nameInput) {
-      cout << peeps[find].get_name() << "'s appointment is scheduled for "
+      cout << peeps[find].get_name() << "'s    \t appointment is scheduled for "
         << time[find].getHour() << ":" << time[find].getMinute() << " " << time[find].getPMorAM()
         << " on " << time[find].getMonth() << "/" << time[find].getDay() << "/" << time[find].getYear()
         << " with " << docs[find].get_Profession() << " Dr. " << docs[find].get_name() << endl;
