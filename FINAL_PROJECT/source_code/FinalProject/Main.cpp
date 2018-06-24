@@ -191,7 +191,6 @@ void appointmentOrderOutput(Appointment &appointments) {
 
     if (realTime.getDay() > 16) {
       dayTemp = isItThatTypeOfMonth + 30 - realTime.getDay();
-      cout << dayTemp << " ...This should be 7" << endl;
       if (realTime.getMonth() + 1 == tempDate->getMonth() && tempDate->getDay() <= dayTemp) {
         output[index] = 1;
       }
