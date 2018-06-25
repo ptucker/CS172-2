@@ -5,6 +5,7 @@
 #include <iomanip>
 using namespace std;
 
+//PT -- better to separate this into its own file.
 class Complex {
 private:
   double a, b;
@@ -39,6 +40,7 @@ public:
   double getRealPart() { return a; }
 
   //I don't know if this should be a string and return for example 5i instead of 5.
+  //PT -- I think this is fine.
   double getImaginaryPart() { return b; }
 
 
@@ -139,6 +141,7 @@ public:
     return sendIt;
   }
   //Post increment, apparently adding int tells compiler its a post increment? Doesn't really make sense to me.
+  //PT -- come visit me sometime
   Complex operator ++(int post) {
     Complex sendIt;
     sendIt.a = a++;
