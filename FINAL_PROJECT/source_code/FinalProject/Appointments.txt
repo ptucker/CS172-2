@@ -3,6 +3,5 @@ Levi 6 30 2018 6 30 PM Charles Dentist
 Heidi 7 30 2018 4 30 AM Pat Surgeon
 Brandon 9 10 2018 4 50 PM Pat Surgeon
 Brielle 10 10 2018 5 20 PM Pat Surgeon
-Rodger 6 25 2018 5 30 PM pat Surgeon
+Rodger 6 25 2018 5 30 PM Pat Surgeon
 Rodger2 7 3 2018 12 15 PM Pat Surgeon
-Rodger3 7 3 2018 11 45 AM Pat Surgeon

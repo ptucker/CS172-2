@@ -19,6 +19,7 @@ void fileOut(Appointment &appointments) {
                     << tempDate->getHour() << " " << tempDate->getMinute() << " " << tempDate->getPMorAM() << " "
                     << tempDoc->get_name() << " " << tempDoc->get_Profession() << endl;
   }
+  cout << "All appointments have been successfully saved." << endl;
 }
 
 //Inputs appointments stored in program into appointment class.
@@ -94,6 +95,38 @@ void userIn(Appointment &appointments) {
 
 }
 
+//Allows user to delete an appointment
+void UserDelAppointment(Appointment &appointments) {
+  bool input = false;
+  char userInput;
+  cout << "Would you like to delete an appointment? Enter Yes(y) or No(n):";
+  cin >> userInput;
+  if (userInput == 'y' || userInput == 'Y') {
+    input = true;
+  }
+  while (input) {
+    string nameToDelete;
+    bool correctName = false;
+    char userInput2;
+    cout << "Input patients name to delete:";
+    cin >> nameToDelete;
+    appointments.get_Appointment(nameToDelete);
+    cout << "Is this the appointment you would like to delete? Enter Yes(y) or No(n):";
+    cin >> userInput2;
+    if (userInput2 == 'y' || userInput2 == 'Y') {
+      correctName = true;
+    }
+    if (correctName) {
+      appointments.del_Appointment(nameToDelete);
+    }
+    cout << "Would you like to delete another appointment? Enter Yes(y) or No(n):";
+    cin >> userInput;
+    if (userInput == 'n' || userInput == 'N') {
+      input = false;
+    }
+  }
+}
+
 //Outputs appointments in order that are within 2 weeks of realtime.
 void orderOutputSoon(Appointment &appointments) {
   Appointment * temp = new Appointment(appointments);
@@ -113,9 +146,11 @@ void orderOutputSoon(Appointment &appointments) {
   }
 
 
+
+  //Very unefficient way at finding order of appointments.
   int difference = max - now.getYear();
   int orderNum = 0;
-  //Very unefficient way at finding order of appointments.
+  cout << "Loading upcoming appointments..." << endl;
   for (int year = now.getYear(); year <= now.getYear() + difference; year++) {
     for (int month = 1; month <= 12; month++) {
       for (int day = 1; day <= 30; day++) {
@@ -218,9 +253,11 @@ void orderOutputAll(Appointment &appointments) {
   }
 
 
+
+  //Very unefficient way at finding order of appointments.
   int difference = max - now.getYear();
   int orderNum = 0;
-  //Very unefficient way at finding order of appointments.
+  cout << "Loading..." << endl;
   for (int year = now.getYear(); year <= now.getYear() + difference; year++) {
     for (int month = 1; month <= 12; month++) {
       for (int day = 1; day <= 30; day++) {
@@ -289,6 +326,7 @@ int main() {
   fileIn(schedule);
   userIn(schedule);
   patientFind(schedule);
+  UserDelAppointment(schedule);
   orderOutputSoon(schedule);
   fileOut(schedule);
 }

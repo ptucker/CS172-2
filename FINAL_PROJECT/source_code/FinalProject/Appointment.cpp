@@ -1,6 +1,5 @@
 #include <iostream>
-#include <vector>
-#include <string>
+#include <iomanip>
 #include "Appointment.h"
 using namespace std;
 
@@ -116,13 +115,38 @@ void Appointment::set_Appointment(Patient pat, Doctor doc, Date Setdate) {
   }
 }
 
+void Appointment::del_Appointment(string eraseName) {
+  for (int find = 0; find < amount; find++) {
+    if (peeps[find].get_name() == eraseName) {
+      peeps.erase(peeps.begin() + find);
+
+      docs.erase(docs.begin() + find);
+
+      time.erase(time.begin() + find);
+      amount--;
+      cout << "Appointment successfully deleted." << endl;
+    }
+  }
+}
+
 void Appointment::get_Appointment(string nameInput) {
+
+  //Gets max name length for output.
+  int maxNameLength = 0;
+  for (int find = 0; find < amount; find++) {
+    string tempName = peeps[find].get_name();
+    if (tempName.length() > maxNameLength) {
+      maxNameLength = tempName.length();
+    }
+  }
+
+  //Outputs the appointment information for specified patient.
   for (int find = 0; find < amount; find++) {
     if (peeps[find].get_name() == nameInput) {
-      cout << peeps[find].get_name() << "'s    \t appointment is scheduled for "
-        << time[find].getHour() << ":" << time[find].getMinute() << " " << time[find].getPMorAM()
-        << " on " << time[find].getMonth() << "/" << time[find].getDay() << "/" << time[find].getYear()
-        << " with " << docs[find].get_Profession() << " Dr. " << docs[find].get_name() << endl;
+      cout << setw(maxNameLength) << left << peeps[find].get_name() << " is scheduled for "
+           << right << setw(2) << time[find].getHour() << ":" << setw(2) << time[find].getMinute() << " " << time[find].getPMorAM()
+           << " on " << setw(2) << time[find].getMonth() << "/" << setw(2) << time[find].getDay() << "/" << time[find].getYear()
+           << " with " << docs[find].get_Profession() << " Dr. " << docs[find].get_name() << endl;
     }
   }
 }
