@@ -100,6 +100,7 @@ int main() {
   inputNamesIntoVectorClass(baby, year, babyNames);
 
 
+  //PT -- fair enough. But some parents might want to know common names for each gender.
   char whyDoWeNeedGender;
   string nameToTest;
   cout << "Enter the gender:";
